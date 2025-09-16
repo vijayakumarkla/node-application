@@ -1,0 +1,35 @@
+#! server-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: server
+    namespace: docker-nodejs-sample
+    labels:
+        com.docker.compose.project: docker-nodejs-sample
+        com.docker.compose.service: server
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: docker-nodejs-sample
+            com.docker.compose.service: server
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: docker-nodejs-sample
+                com.docker.compose.service: server
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: server
+                  image: docker-nodejs-sample-server
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: NODE_ENV
+                      value: "production"
+                  ports:
+                    - name: server-3000
+                      containerPort: 3000

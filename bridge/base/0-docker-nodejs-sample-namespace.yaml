@@ -1,0 +1,8 @@
+#! 0-docker-nodejs-sample-namespace.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: docker-nodejs-sample
+    labels:
+        com.docker.compose.project: docker-nodejs-sample
